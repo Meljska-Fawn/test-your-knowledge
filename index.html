@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <div class="info_box">
+        <div class="info_title">
+            <h1>Coding Quiz Challenge</h1>
+        </div>
+        <div class="info_text">
+            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
+                answers will penalize your score/time by ten seconds!</p>
+        </div>
+        <!-- Start qiuz button -->
+        <button id="start_btn" data-number="0">Start Quiz</button>
+    </div>
+
+    <header class="highscore_timer">
+        <div class="view_highscores">
+            <a href="#highscore">View Highscores</a>
+        </div>
+    </header>
+
+
+    <section>
+        <div class="quiz_box" data.set="question" data-state="hidden">
+            <div class="timer">
+                <div class="timer_text"><span id="timer_sec"></span></div>
+            </div>
+            <div class="question_text" data-state="hidden" data-number="1">
+                <span></span>
+            </div>
+            <div class="question_text" data-state="hidden" data-number="2">
+                <span></span>
+            </div>
+            <div class="answer_list" >
+                <button class="answer1"></button>
+                <button class="answer2"></button>
+                <button class="answer3"></button>
+                <button class="answer4"></button>
+            </div>
+            
+
+            <div id="response_prompt">
+            </div>
+        </div>
+
+        <div id="final_score" data-state="hidden">
+            <h1>All done!</h1>
+            <p class="score_number">Your final score is</p>
+            <p>Enter initials<input type="text" name="initials" id="initials" placeholder="" />
+            </p>
+            <button id="submit_btn">Submit</button>
+        </div>
+
+        <div id="highscore">
+            <h1>Highscores</h1>
+            <div id="highscore_list"></div>
+            <button id="go_back">Go Back</button>
+            <button id="clear_hs">Clear Highscores</button>
+        </div>
+    </section>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>

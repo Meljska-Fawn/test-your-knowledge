@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: whitesmoke;
+}
+
+.info_box,
+.quiz_box,
+#final_score,
+#highscore {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+}
+
+.answer_list {
+    list-style: none;
+}
+
+.info_box {
+    text-align: center;
+}
+
+.info_text {
+    margin-top: 3%;
+    margin-bottom: 3%;
+    font-size: 1em;
+}
+
+#start_btn {
+    background: rgb(151, 86, 211);
+    color: white;
+    letter-spacing: .05em;
+    font-size: 1em;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    border-color: rgb(151, 86, 211);
+}
+
+#start_btn:hover {
+    background:rgb(171, 124, 215);
+    cursor: pointer;
+}
+
+.highscore_timer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.view_highscores {
+    padding: 2% 2% 2% 2%;
+}
+
+.highscore_timer a {
+    color: rgb(151, 86, 211);
+}
+
+.timer {
+    margin-bottom: 2%;
+}
+
+#response_prompt {
+    color: grey;
+    font-style: italic;
+    font-size: 1em;
+}
+
+#final_score h1 {
+    margin-bottom: 2%;
+}
+
+#final_score p {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+#submit_btn {
+    background: rgb(151, 86, 211);
+    color: white;
+    letter-spacing: .05em;
+    font-size: 1em;
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+    border-color: rgb(151, 86, 211);
+    margin-top: 2%;
+    margin-left: 20%;
+}
+
+#submit_btn:hover {
+    background:rgb(171, 124, 215);
+    cursor: pointer;
+}
+
+.question_text {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 5%;
+}
+
+.answer_list button {
+    display:list-item;
+    background: rgb(151, 86, 211);
+    color: white;
+    letter-spacing: .05em;
+    font-size: 1em;
+    margin: 1% 1% 1% 1%;
+    height: 30px;
+    border-radius: 5px;
+    border-color: rgb(151, 86, 211);
+}
+
+.answer_list button:hover {
+    background:rgb(171, 124, 215);
+    cursor: pointer;
+}
+
+.answer_list {
+    margin-bottom: 5%;
+}
+
+#highscore h1 {
+    margin-bottom: 6%;;
+}
+
+#highscore_list {
+    margin-bottom: 6%;
+    background-color:rgba(171, 124, 215, 0.409);
+    border-radius: 2px;
+    font-size: 1em;
+    padding-left: 2%;
+}
+
+#highscore button {
+    background: rgb(151, 86, 211);
+    color: white;
+    letter-spacing: .05em;
+    font-size: 1em;
+    border-radius: 5px;
+    border-color: rgb(151, 86, 211);
+    margin-top: 2%; 
+}
+
+#go_back {
+    margin-right: 3%;
+    width: 90px;
+    height: 30px;
+}
+
+#clear_hs {
+    width: 160px;
+    height: 30px;
+}
+
+#highscore button:hover {
+    background:rgb(171, 124, 215);
+    cursor: pointer;
+}
