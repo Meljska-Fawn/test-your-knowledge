@@ -1,4 +1,4 @@
-let infoBox = document.querySelector(".info_box");
+let infoBox = document.querySelector("#info_box");
 let startBtn = document.querySelector("#start_btn");
 let quizBox = document.querySelector(".quiz_box");
 let highscoreTimer = document.querySelector(".highscore_timer");
@@ -178,3 +178,19 @@ function highscores() {
 
     document.querySelector("#highscore_list").textContent = lastHighscore;
 };
+
+let backBtn = document.getElementById("go_back");
+
+backBtn.addEventListener("click", function() {
+
+    highscore.style.display = "none";
+    infoBox.style.display = "block";
+});
+
+let clearBtn = document.getElementById("clear_hs");
+
+clearBtn.addEventListener("click", function() {
+    let hsList = document.getElementById("highscore_list");
+
+    hsList.style.display = "none";
+});    

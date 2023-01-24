@@ -9,7 +9,7 @@ body {
     background: whitesmoke;
 }
 
-.info_box,
+#info_box,
 .quiz_box,
 #final_score,
 #highscore {
@@ -23,7 +23,7 @@ body {
     list-style: none;
 }
 
-.info_box {
+#info_box {
     text-align: center;
 }
 

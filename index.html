@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Test Your Knowledge</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
-    <div class="info_box">
+    <div id="info_box">
         <div class="info_title">
             <h1>Coding Quiz Challenge</h1>
         </div>
         <div class="info_text">
             <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
-                answers will penalize your score/time by ten seconds!</p>
+            answers will penalize your score/time by five seconds!</p>
         </div>
         <!-- Start qiuz button -->
         <button id="start_btn" data-number="0">Start Quiz</button>
@@ -24,7 +24,7 @@
 
     <header class="highscore_timer">
         <div class="view_highscores">
-            <a href="#highscore">View Highscores</a>
+            <a href="">View Highscores</a>
         </div>
     </header>
 
@@ -63,7 +63,7 @@
         <div id="highscore">
             <h1>Highscores</h1>
             <div id="highscore_list"></div>
-            <button id="go_back">Go Back</button>
+            <a href = "#info_box"><button id="go_back">Go Back</button></a>
             <button id="clear_hs">Clear Highscores</button>
         </div>
     </section>
