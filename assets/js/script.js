@@ -1,7 +1,7 @@
 let infoBox = document.querySelector("#info_box");
 let startBtn = document.querySelector("#start_btn");
 let quizBox = document.querySelector(".quiz_box");
-let highscoreTimer = document.querySelector(".highscore_timer");
+let viewHighscore = document.querySelector(".view_highscores");
 let questionText = document.querySelector(".question_text");
 let timerText = document.querySelector(".timer_text");  
 let timerSec = document.querySelector("#timer_sec");
@@ -11,6 +11,7 @@ let option3 = document.querySelector(".answer3");
 let option4 = document.querySelector(".answer4");
 let finalScore = document.querySelector("#final_score");
 let highscore = document.querySelector("#highscore");
+
 let secondsLeft = 75;
 
 let questions = [
@@ -71,6 +72,14 @@ let questions = [
     },
 ]
 
+viewHighscore.addEventListener("click", function () {
+    
+    infoBox.style.display = "none";
+    highscore.style.display = "block";
+    quizBox.style.display = "none";
+    finalScore.style.display = "none";
+    
+});
 
 var questionNumber;
 
@@ -125,10 +134,6 @@ function response(event) {
         quizEnd();
     }
 
-    if (secondsLeft <= 0) {
-        quizEnd();
-    }
-
     if (element.textContent === questions[questionNumber].answer) {
       document.getElementById("response_prompt").innerText = "Correct!";
       questionNumber++;
@@ -138,15 +143,16 @@ function response(event) {
         document.getElementById("response_prompt").innerText = "Wrong!";
         secondsLeft -= 5;
     } 
-  };
+};
   
 function setTime() {
     var timerInterval = setInterval(function() {
       secondsLeft--;
       timerText.textContent = "Time: " + secondsLeft;
   
-      if(secondsLeft === 0) {
+      if(secondsLeft <= 0) {
         clearInterval(timerInterval);
+        quizEnd();
       } 
     }, 1000);
 };   
@@ -157,6 +163,7 @@ let scoreNumber = document.querySelector(".score_number");
 function quizEnd() {
     quizBox.style.display = "none";
     finalScore.style.display = "block";
+
     scoreNumber.textContent = "Your final score is " + score + "!";
 };
 

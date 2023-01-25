@@ -55,7 +55,16 @@ body {
 }
 
 .view_highscores {
-    padding: 2% 2% 2% 2%;
+    background: whitesmoke;
+    color: rgb(151, 86, 211);
+    letter-spacing: .05em;
+    font-size: 1em;
+    width: 150px;
+    height: 30px;
+    border: none;
+    text-decoration: underline;
+    margin: 1% 2%;
+    cursor: pointer;
 }
 
 .highscore_timer a {
