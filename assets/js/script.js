@@ -177,6 +177,9 @@ function quizEnd() {
 
 let submitBtn = document.querySelector("#submit_btn");
 let initials = document.getElementById("initials");
+let hsList = document.getElementById("highscore_list");
+let backBtn = document.getElementById("go_back");
+let clearBtn = document.getElementById("clear_hs");
 
 // Submits the highscores to the highscores page
 submitBtn.addEventListener("click", function () {
@@ -186,22 +189,6 @@ submitBtn.addEventListener("click", function () {
 
     addHighscore();
 });
-
-function addHighscore() {
-    // const highScore = JSON.parse(window.localStorage.getItem("highscores")) || [];
-
-    initialsTrim = initials.value.trim();
-
-    let newScore = { score, initialsTrim };  
-
-    // highScore.push(newScore);
-
-    window.localStorage.setItem("highscores", JSON.stringify(newScore));
-
-    viewHighscores();
-};
-
-let hsList = document.getElementById("highscore_list");
 
 // Stores the highscores
 function viewHighscores() {
@@ -218,14 +205,29 @@ function viewHighscores() {
     }
 };
 
-let backBtn = document.getElementById("go_back");
+function addHighscore() {
+    // const highScore = JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+    initialsTrim = initials.value.trim();
+
+    if (initials !== "") {
+
+        let highscoreBoard = JSON.parse(window.localStorage.getItem("highscores")) || [];
+        let newScore = { score, initialsTrim };
+
+        console.log(highscoreBoard);
+        highscoreBoard.push(newScore);
+
+        window.localStorage.setItem("highscores", JSON.stringify(highscoreBoard));
+    };
+
+    viewHighscores();
+};
 
 // Directs the user to the start of the quiz page
 backBtn.addEventListener("click", function () {
     document.location.reload();
 });
-
-let clearBtn = document.getElementById("clear_hs");
 
 // Clears the highscore board
 clearBtn.addEventListener("click", function () {
