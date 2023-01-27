@@ -1,19 +1,21 @@
-let infoBox = document.querySelector("#info_box");
-let startBtn = document.querySelector("#start_btn");
+// Dom elements
+let infoBox = document.getElementById("info_box");
+let startBtn = document.getElementById("start_btn");
 let quizBox = document.querySelector(".quiz_box");
 let viewHighscore = document.querySelector(".view_highscores");
 let questionText = document.querySelector(".question_text");
-let timerText = document.querySelector(".timer_text");  
-let timerSec = document.querySelector("#timer_sec");
+let timerText = document.querySelector(".timer_text");
+let timerSec = document.getElementById("timer_sec");
 let option1 = document.querySelector(".answer1");
 let option2 = document.querySelector(".answer2");
 let option3 = document.querySelector(".answer3");
 let option4 = document.querySelector(".answer4");
-let finalScore = document.querySelector("#final_score");
-let highscore = document.querySelector("#highscore");
+let finalScore = document.getElementById("final_score");
+let highscore = document.getElementById("highscore");
 
 let secondsLeft = 75;
 
+// Quiz Questions
 let questions = [
     {
         number: 1,
@@ -72,13 +74,14 @@ let questions = [
     },
 ]
 
+// Highscore page link
 viewHighscore.addEventListener("click", function () {
-    
+
     infoBox.style.display = "none";
     highscore.style.display = "block";
     quizBox.style.display = "none";
     finalScore.style.display = "none";
-    
+
 });
 
 var questionNumber;
@@ -87,6 +90,7 @@ quizBox.style.display = "none";
 finalScore.style.display = "none";
 highscore.style.display = "none";
 
+// Start Button
 startBtn.addEventListener("click", function (event) {
 
     questionNumber = event.target.getAttribute("data-number");
@@ -94,9 +98,9 @@ startBtn.addEventListener("click", function (event) {
     var state = questionText.getAttribute("data-state");
     console.log(questions);
 
-   infoBox.style.display = "none";
-   quizBox.style.display = "block";
-    
+    infoBox.style.display = "none";
+    quizBox.style.display = "block";
+
     if (state === "hidden") {
         question();
     } else {
@@ -108,15 +112,17 @@ startBtn.addEventListener("click", function (event) {
 
 });
 
-function question(){
+// Rotates through questions and options for answers
+function question() {
     questionText.dataset.state = "visible";
     questionText.textContent = questions[questionNumber].question;
-        option1.textContent = questions[questionNumber].options[0];
-        option2.textContent = questions[questionNumber].options[1];
-        option3.textContent = questions[questionNumber].options[2];
-        option4.textContent = questions[questionNumber].options[3];
+    option1.textContent = questions[questionNumber].options[0];
+    option2.textContent = questions[questionNumber].options[1];
+    option3.textContent = questions[questionNumber].options[2];
+    option4.textContent = questions[questionNumber].options[3];
 };
 
+// Answer Buttons
 option1.addEventListener("click", response);
 option2.addEventListener("click", response);
 option3.addEventListener("click", response);
@@ -124,38 +130,40 @@ option4.addEventListener("click", response);
 
 let score = 1;
 
+// Checks if the response click is correct or wrong
 function response(event) {
 
     console.log(questions[questionNumber].answer);
     var element = event.target;
     console.log(element.textContent);
-  
-    if(questionNumber >= 4) {
+
+    if (questionNumber >= 4) {
         quizEnd();
     }
 
     if (element.textContent === questions[questionNumber].answer) {
-      document.getElementById("response_prompt").innerText = "Correct!";
-      questionNumber++;
-      question();
-      score += 1;
-    } else { 
+        document.getElementById("response_prompt").innerText = "Correct!";
+        questionNumber++;
+        question();
+        score += 1;
+    } else {
         document.getElementById("response_prompt").innerText = "Wrong!";
         secondsLeft -= 5;
-    } 
+    }
 };
-  
+
+// Counts down the time and ends the quiz when the time runs out
 function setTime() {
-    var timerInterval = setInterval(function() {
-      secondsLeft--;
-      timerText.textContent = "Time: " + secondsLeft;
-  
-      if(secondsLeft <= 0) {
-        clearInterval(timerInterval);
-        quizEnd();
-      } 
+    var timerInterval = setInterval(function () {
+        secondsLeft--;
+        timerText.textContent = "Time: " + secondsLeft;
+
+        if (secondsLeft <= 0) {
+            clearInterval(timerInterval);
+            quizEnd();
+        }
     }, 1000);
-};   
+};
 
 
 let scoreNumber = document.querySelector(".score_number");
@@ -170,34 +178,58 @@ function quizEnd() {
 let submitBtn = document.querySelector("#submit_btn");
 let initials = document.getElementById("initials");
 
-submitBtn.addEventListener("click", function() {
+// Submits the highscores to the highscores page
+submitBtn.addEventListener("click", function () {
 
     finalScore.style.display = "none";
     highscore.style.display = "block";
 
-    localStorage.setItem("scorePost", initials.value.trim() + " scored " + score);
-    highscores();
+    addHighscore();
 });
-  
-function highscores() {
-    let lastHighscore = localStorage.getItem("scorePost");
-    console.log(lastHighscore);
 
-    document.querySelector("#highscore_list").textContent = lastHighscore;
+function addHighscore() {
+    // const highScore = JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+    initialsTrim = initials.value.trim();
+
+    let newScore = { score, initialsTrim };  
+
+    // highScore.push(newScore);
+
+    window.localStorage.setItem("highscores", JSON.stringify(newScore));
+
+    viewHighscores();
+};
+
+let hsList = document.getElementById("highscore_list");
+
+// Stores the highscores
+function viewHighscores() {
+    let newHighscores = JSON.parse(window.localStorage.getItem("highscores"));
+    hsList.innerHTML = newHighscores.initialsTrim + " scored " + newHighscores.score;
+    let highScoreHTML = hsList.innerHTML;
+
+    for (let i = 0; i < newHighscores.length; i++) {
+        let { score, initialsTrim } = newHighscores[i];
+        highScoreHTML += `<li> ${initialsTrim}: ${score}</li>`
+    }
+    if (highScoreHTML === "") {
+        highScoreHTML = "<h3> No Scores Yet! </h3>";
+    }
 };
 
 let backBtn = document.getElementById("go_back");
 
-backBtn.addEventListener("click", function() {
-
-    highscore.style.display = "none";
-    infoBox.style.display = "block";
+// Directs the user to the start of the quiz page
+backBtn.addEventListener("click", function () {
+    document.location.reload();
 });
 
 let clearBtn = document.getElementById("clear_hs");
 
-clearBtn.addEventListener("click", function() {
-    let hsList = document.getElementById("highscore_list");
-
+// Clears the highscore board
+clearBtn.addEventListener("click", function () {
     hsList.style.display = "none";
-});    
+    // localStorage.clear();
+});
+

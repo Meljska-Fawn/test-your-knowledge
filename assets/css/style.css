@@ -172,3 +172,7 @@ body {
     background:rgb(171, 124, 215);
     cursor: pointer;
 }
+
+.hide {
+    display: none;
+}
