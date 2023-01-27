@@ -192,9 +192,12 @@ submitBtn.addEventListener("click", function () {
 
 // Stores the highscores
 function viewHighscores() {
+    
     let newHighscores = JSON.parse(window.localStorage.getItem("highscores"));
     hsList.innerHTML = newHighscores.initialsTrim + " scored " + newHighscores.score;
+    
     let highScoreHTML = hsList.innerHTML;
+
 
     for (let i = 0; i < newHighscores.length; i++) {
         let { score, initialsTrim } = newHighscores[i];
@@ -206,21 +209,21 @@ function viewHighscores() {
 };
 
 function addHighscore() {
-    // const highScore = JSON.parse(window.localStorage.getItem("highscores")) || [];
+    // let highscoreBoard = JSON.parse(window.localStorage.getItem("highscores")) || [];
 
     initialsTrim = initials.value.trim();
 
     if (initials !== "") {
 
-        let highscoreBoard = JSON.parse(window.localStorage.getItem("highscores")) || [];
         let newScore = { score, initialsTrim };
 
-        console.log(highscoreBoard);
-        highscoreBoard.push(newScore);
+        
+        // highscoreBoard.push(newScore);
+        
 
-        window.localStorage.setItem("highscores", JSON.stringify(highscoreBoard));
+        window.localStorage.setItem("highscores", JSON.stringify(newScore));
     };
-
+    
     viewHighscores();
 };
 
